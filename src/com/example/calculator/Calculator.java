@@ -1,5 +1,6 @@
 package com.example.calculator;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Calculator {
@@ -7,7 +8,7 @@ public class Calculator {
   private Integer op1;        // 첫번째 피연산자
   private Integer op2;        // 두번째 피연산자
   private char operator;  // 연산자
-  private Integer result;     // 계산 결과
+  private ArrayList<Integer> resultList;     // 계산 결과 저장 (컬렉션 타입)
 
   // 생성자
   Calculator() {
@@ -28,28 +29,26 @@ public class Calculator {
   public void calculate() {
     // 연산자
     if (this.operator == '+') {
-      this.result = this.op1 + this.op2;
+      this.resultList.add(this.op1 + this.op2);
     }
     else if (this.operator == '-') {
-      this.result = this.op1 - this.op2;
+      this.resultList.add(this.op1 - this.op2);
     }
     else if (this.operator == '*') {
-      this.result = this.op1 * this.op2;
+      this.resultList.add(this.op1 * this.op2);
     }
     else if (this.operator == '/') {
-      this.result = this.op1 / this.op2;    // Memo: 0 나누기 예외처리
+      this.resultList.add(this.op1 / this.op2);    // Memo: 0 나누기 예외처리
     }
   }
 
   // Getter
   public Integer getter() {
-
-
-   return 0;
+   return this.resultList.get(resultList.size()-1);
   }
 
   // Setter
-  public void setter() {
-
+  public void setter(int result) {
+    this.resultList.set(resultList.size()-1, result);
   }
 }
