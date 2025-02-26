@@ -3,15 +3,15 @@ package com.example.calculator;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Calculator {
+public class ArithmeticCalculator {
   private Scanner sc;     // 스캐너
   private Integer op1;        // 첫번째 피연산자
   private Integer op2;        // 두번째 피연산자
   private char operator;  // 연산자
-  private ArrayList<Integer> resultList;     // 계산 결과 저장 (컬렉션 타입)
+  private ArrayList<Integer> resultList = new ArrayList<Integer>();     // 계산 결과 저장 (컬렉션 타입)
 
   // 생성자
-  Calculator() {
+  ArithmeticCalculator() {
     this.sc = new Scanner(System.in);
   }
 
