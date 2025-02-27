@@ -13,12 +13,12 @@ public class App {
     while(true) {
       // 입력 받기
       try {
-        System.out.print("첫번째 숫자: ");   // Memo: 예외 처리
-        int op1 = sc.nextInt();
+        System.out.print("첫번째 숫자: ");
+        cal.setOp1(sc.nextInt());
         System.out.print("연산자: ");
-        int operator = sc.next().charAt(0);
+        cal.setOperator(sc.next().charAt(0));
         System.out.print("두번째 숫자: ");
-        int op2 = sc.nextInt();
+        cal.setOp2(sc.nextInt());
       }
       catch (Exception e) {
         System.out.println("잘못된 입력 값 입니다.");
@@ -38,7 +38,7 @@ public class App {
 
       // exit 입력 시 종료
       System.out.print("더 계산하시겠습니까? (exit 입력 시 종료): ");
-      input = sc.nextLine();
+      input = sc.next();
       if(input.equals("exit")) break;
     }
   }
