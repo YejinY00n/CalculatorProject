@@ -20,7 +20,7 @@ public class ArithmeticCalculator <T extends Number> {
   private T op1;        // 첫번째 피연산자
   private T op2;        // 두번째 피연산자
   private char operator;  // 연산자
-  private ArrayList<Object> resultList = new ArrayList<>();     // 계산 결과 저장
+  private ArrayList<T> resultList = new ArrayList<>();     // 계산 결과 저장
 
   ArithmeticCalculator() {
   }
@@ -29,13 +29,30 @@ public class ArithmeticCalculator <T extends Number> {
   public void calculate() throws Exception {
     // 연산 후 결과 저장
     if (operator == Operator.ADD.getOp()) {
-      resultList.add(op1.doubleValue() + op2.doubleValue());
+      // 모두 정수 피연산자라면
+      if(op1 instanceof Integer && op2 instanceof Integer) {
+        resultList.add((T)(Integer)(op1.intValue() + op2.intValue()));
+      }
+      // 하나라도 Double 타입이 있는 경우, 형 변환하여 계산
+      else {
+        resultList.add((T)(Double)(op1.doubleValue() + op2.doubleValue()));
+      }
     }
     else if (operator ==  Operator.SUBTRACT.getOp()) {
-      resultList.add(op1.doubleValue() - op2.doubleValue());
+      if(op1 instanceof Integer && op2 instanceof Integer) {
+        resultList.add((T)(Integer)(op1.intValue() - op2.intValue()));
+      }
+      else {
+        resultList.add((T)(Double)(op1.doubleValue() - op2.doubleValue()));
+      }
     }
     else if (operator ==  Operator.MULTIPLE.getOp()) {
-      resultList.add(op1.doubleValue() * op2.doubleValue());
+      if(op1 instanceof Integer && op2 instanceof Integer) {
+        resultList.add((T)(Integer)(op1.intValue() * op2.intValue()));
+      }
+      else {
+        resultList.add((T)(Double)(op1.doubleValue() * op2.doubleValue()));
+      }
     }
     else if (operator == Operator.DIVIDE.getOp()) {
       // 0으로 나누는 경우
@@ -44,7 +61,12 @@ public class ArithmeticCalculator <T extends Number> {
         throw new ArithmeticException();
       }
 
-      this.resultList.add(op1.doubleValue() / op2.doubleValue());
+      if(op1 instanceof Integer && op2 instanceof Integer) {
+        resultList.add((T)(Integer)(op1.intValue() / op2.intValue()));
+      }
+      else {
+        resultList.add((T)(Double)(op1.doubleValue() / op2.doubleValue()));
+      }
     }
     else {
       System.out.println("유효하지 않은 연산자 입니다.");
@@ -78,7 +100,16 @@ public class ArithmeticCalculator <T extends Number> {
     System.out.print(result + " 보다 큰 이전의 계산 결과들: ");
       // 저장된 이전 결과들 중에서 result 보다 큰 값을 출력
      resultList.stream()
-        .filter(r -> (result.doubleValue() - (Double)r < 0))    // 저장된 값 (r) 이 result 보다 크다면
+        .filter(r -> {
+          if(r instanceof Integer) {
+            return result.doubleValue() < ((Integer)r).doubleValue();
+          }
+          else if(r instanceof Double) {
+            return result.doubleValue() < ((Double)r).doubleValue();
+          }
+          else
+            return false;
+        })    // 저장된 값 (r) 이 result 보다 크다면
         .forEach(r -> System.out.print(r+", "));
     System.out.println(" ");  // 줄바꿈
   }
