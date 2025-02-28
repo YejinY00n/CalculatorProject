@@ -2,7 +2,7 @@ package com.example.calculator;
 
 import java.util.Scanner;
 
-public class App {
+public class App <T extends Number>  {
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
     ArithmeticCalculator cal = new ArithmeticCalculator();
@@ -14,11 +14,11 @@ public class App {
       // 입력 받기
       try {
         System.out.print("첫번째 숫자: ");
-        cal.setOp1(sc.nextInt());
+        cal.setOp1(Double.parseDouble(sc.next()));
         System.out.print("연산자: ");
         cal.setOperator(sc.next().charAt(0));
         System.out.print("두번째 숫자: ");
-        cal.setOp2(sc.nextInt());
+        cal.setOp2(Double.parseDouble(sc.next()));
       }
       catch (Exception e) {
         System.out.println("잘못된 입력 값 입니다.");
@@ -33,7 +33,7 @@ public class App {
         continue;
       }
 
-      System.out.printf("계산 결과: %d\n\n", cal.getLastResult());   // 결과 출력
+      System.out.println("계산 결과: " + cal.getLastResult()+"\n");   // 결과 출력
       cal.getBiggerResults(cal.getLastResult());                   // 현재 결과보다 큰 이전의 계산 결과 출력
 
       // exit 입력 시 종료
