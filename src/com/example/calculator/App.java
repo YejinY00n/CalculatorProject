@@ -25,15 +25,17 @@ public class App <T extends Number>  {
         continue;
       }
 
+      // 입력받은 식 계산
       try {
-        cal.calculate();    // 입력받은 식 계산
+        cal.calculate();
       }
       catch (Exception e) {
         System.out.println("잘못된 연산입니다.");
         continue;
       }
 
-      System.out.println("계산 결과: " + cal.getLastResult()+"\n");   // 결과 출력
+      // 결과 출력
+      System.out.println("계산 결과: " + cal.getLastResult()+"\n");   
       cal.getBiggerResults(cal.getLastResult());                   // 현재 결과보다 큰 이전의 계산 결과 출력
 
       // exit 입력 시 종료

@@ -1,10 +1,6 @@
 package com.example.calculator;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.stream.Collectors;
 
 enum Operator {
   ADD('+'), SUBTRACT('-'), MULTIPLE('*'), DIVIDE('/');
@@ -79,7 +75,7 @@ public class ArithmeticCalculator <T extends Number> {
 
   // 저장된 연산 결과들 중 Scanner 로 입력받은 값보다 큰 결과값들을 출력
   public void getBiggerResults(T result) {
-    System.out.print(result + "보다 큰 이전의 계산 결과들: ");
+    System.out.print(result + " 보다 큰 이전의 계산 결과들: ");
       // 저장된 이전 결과들 중에서 result 보다 큰 값을 출력
      this.resultList.stream()
         .filter(r -> (result.doubleValue() - (Double)r < 0))    // 저장된 값 (r) 이 result 보다 크다면
