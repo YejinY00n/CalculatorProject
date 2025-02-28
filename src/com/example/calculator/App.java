@@ -14,11 +14,23 @@ public class App <T extends Number>  {
       // 입력 받기
       try {
         System.out.print("첫번째 숫자: ");
-        cal.setOp1(Double.parseDouble(sc.next()));
+        input = sc.next();
+        if(input.contains(".")) {
+          cal.setOp1(Double.parseDouble(input));
+        } else {
+          cal.setOp1(Integer.parseInt(input));
+        }
+
         System.out.print("연산자: ");
         cal.setOperator(sc.next().charAt(0));
+
         System.out.print("두번째 숫자: ");
-        cal.setOp2(Double.parseDouble(sc.next()));
+        input = sc.next();
+        if(input.contains(".")) {
+          cal.setOp2(Double.parseDouble(input));
+        } else {
+          cal.setOp2(Integer.parseInt(input));
+        }
       }
       catch (Exception e) {
         System.out.println("잘못된 입력 값 입니다.");
